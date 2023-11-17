@@ -4,7 +4,7 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-				primary: "Aeonik TRIAL"
+				primary: "Aeonik"
 			}
 		},
 	},
