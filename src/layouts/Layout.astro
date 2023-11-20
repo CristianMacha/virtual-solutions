@@ -29,23 +29,76 @@ const { title } = Astro.props;
 <style is:global>
     @font-face {
         font-family: Aeonik;
-        src:
-            url("../assets/fonts/Aeonik-Air.otf") format("otf"),
-            url("../assets/fonts/Aeonik-AirItalic.otf") format("otf"),
-            url("../assets/fonts/Aeonik-Black.otf") format("otf"),
-            url("../assets/fonts/Aeonik-BlackItalic.otf") format("otf"),
-            url("../assets/fonts/Aeonik-Bold.otf") format("otf"),
-            url("../assets/fonts/Aeonik-BoldItalic.otf") format("otf"),
-            url("../assets/fonts/Aeonik-Light.otf") format("otf"),
-            url("../assets/fonts/Aeonik-LightItalic.otf") format("otf"),
-            url("../assets/fonts/Aeonik-Medium.otf") format("otf"),
-            url("../assets/fonts/Aeonik-MediumItalic.otf") format("otf"),
-            url("../assets/fonts/Aeonik-Regular.otf") format("otf"),
-            url("../assets/fonts/Aeonik-RegularItalic.otf") format("otf"),
-            url("../assets/fonts/Aeonik-Thin.otf") format("otf"),
-            url("../assets/fonts/Aeonik-ThinItalic.otf") format("otf");
+        src: url("../assets/fonts/Aeonik-Air.otf") format("opentype");
+    }
+    @font-face {
+        font-family: Aeonik;
+        src: url("../assets/fonts/Aeonik-AirItalic.otf") format("opentype");
+    }
+    @font-face {
+        font-family: Aeonik;
+        src: url("../assets/fonts/Aeonik-Black.otf") format("opentype");
+    }
+    @font-face {
+        font-family: Aeonik;
+        src: url("../assets/fonts/Aeonik-BlackItalic.otf") format("opentype");
+    }
+    @font-face {
+        font-family: Aeonik;
+        src: url("../assets/fonts/Aeonik-Bold.otf") format("opentype");
+        font-style: normal;
+        font-weight: 700;
+    }
+    @font-face {
+        font-family: Aeonik;
+        src: url("../assets/fonts/Aeonik-BoldItalic.otf") format("opentype");
+        font-style: italic;
+        font-weight: 700;
+    }
+    @font-face {
+        font-family: Aeonik;
+        src: url("../assets/fonts/Aeonik-Light.otf") format("opentype");
+    }
+    @font-face {
+        font-family: Aeonik;
+        src: url("../assets/fonts/Aeonik-LightItalic.otf") format("opentype");
+    }
+    @font-face {
+        font-family: Aeonik;
+        src: url("../assets/fonts/Aeonik-Medium.otf") format("opentype");
+        font-style: normal;
+        font-weight: 500;
+    }
+    @font-face {
+        font-family: Aeonik;
+        src: url("../assets/fonts/Aeonik-MediumItalic.otf") format("opentype");
+        font-style: italic;
+        font-weight: 500;
+    }
+
+    @font-face {
+        font-family: Aeonik;
+        src: url("../assets/fonts/Aeonik-Regular.otf") format("opentype");
+        font-style: normal;
+        font-weight: 400;
+    }
+    @font-face {
+        font-family: Aeonik;
+        src: url("../assets/fonts/Aeonik-RegularItalic.otf") format("opentype");
+        font-style: italic;
+        font-weight: 700;
+    }
+    @font-face {
+        font-family: Aeonik;
+        src: url("../assets/fonts/Aeonik-Thin.otf") format("opentype");
+    }
+    @font-face {
+        font-family: Aeonik;
+        src: url("../assets/fonts/Aeonik-ThinItalic.otf") format("opentype");
     }
     /* *,
+    url("../assets/fonts/Aeonik-Thin.otf") format("opentype"),
+    url("../assets/fonts/Aeonik-ThinItalic.otf") format("opentype");
     *::after,
     *::before {
         box-sizing: border-box;
