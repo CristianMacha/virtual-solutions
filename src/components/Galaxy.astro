@@ -1,4 +1,4 @@
-<section class="flex py-[80px] px-[16px] flex-col justify-center items-center gap-[8px] self-stretch galaxy">
+<section class="flex py-[80px] px-[16px] flex-col justify-center items-center gap-[8px] self-stretch galaxy lg:hidden">
     <div class="flex flex-col justify-center items-center gap-[8px] ">
         <div class="flex items-center gap-[8px] self-stretch">
             <span class="text-white text-justify font-primary text-[18px] not-italic font-normal leading-[normal]">Comenzando como entusiastas</span>
@@ -17,6 +17,26 @@
         </div>
     </div>
 </section>
+<section class="py-[139px] px-[40px] hidden lg:flex flex-col justify-center items-start gap-[8px] self-stretch galaxy">
+    <span class="self-stretch text-white font-primary text-[96px] not-italic font-bold leading-[normal] text-effect1">Comenzando como entusiastas</span>
+    <div class="flex gap-[24px] flex-wrap items-center text-effect2">
+        <span class="self-stretch text-white font-primary text-[96px] not-italic font-bold leading-[normal] whitespace-nowrap">que querían crear algo</span>
+        <div class="entusiasta w-[264px] h-[101px]"></div>
+    </div>
+    <span class="self-stretch text-white font-primary text-[96px] not-italic font-bold leading-[normal] text-effect3">realmente grandioso para otras</span>
+    <span class="self-stretch text-white font-primary text-[96px] not-italic font-bold leading-[normal] text-effect4">personas, cambiamos nuestras</span>
+    <div class="flex gap-[24px] flex-wrap items-center text-effect5">
+        <span class="self-stretch text-white font-primary text-[96px] not-italic font-bold leading-[normal] whitespace-nowrap">habilidades</span>
+        <div class="entusiasta w-[264px] h-[101px]"></div>
+        <span class="self-stretch text-white font-primary text-[96px] not-italic font-bold leading-[normal] whitespace-nowrap">para crear</span>
+    </div>
+    <div class="flex gap-[24px] flex-wrap items-center text-effect6">
+        <span class="self-stretch text-white font-primary text-[96px] not-italic font-bold leading-[normal] whitespace-nowrap">un entorno</span>
+        <div class="entusiasta w-[264px] h-[101px]"></div>
+        <span class="self-stretch text-white font-primary text-[96px] not-italic font-bold leading-[normal] whitespace-nowrap">colaborativo</span>
+    </div>
+    <span class="self-stretch text-white font-primary text-[96px] not-italic font-bold leading-[normal] whitespace-nowrap text-effect7">de trabajo unico.</span>
+</section>
 <style>
     .galaxy {
         background: url("https://firebasestorage.googleapis.com/v0/b/dev-system2023.appspot.com/o/360%2Fbg.webp?alt=media&token=04065e19-33a8-4aaf-9f66-c189f13542cc");
@@ -30,3 +50,24 @@
         background-repeat: no-repeat;
     }
 </style>
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    
+    gsap.registerPlugin(ScrollTrigger);
+    [".text-effect1", ".text-effect2", ".text-effect3", ".text-effect4", ".text-effect5", ".text-effect6", ".text-effect7"].forEach((fila) => {
+        gsap.fromTo(fila, {
+            y: 40,
+            opacity: 0,
+        }, {
+            duration: 0.5,
+            y: 10,
+            opacity: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: fila,
+                scrub: 1
+            }
+        })
+    })
+</script>

@@ -1,7 +1,21 @@
-<div class="flex h-[141px] flex-col justify-center items-center gap-[8px] self-stretch border-y border-[#c7c7c7] bg-white overflow-hidden">
+<div class="flex h-[141px] flex-col justify-center items-center gap-[8px] self-stretch border-y border-[#c7c7c7] bg-white overflow-hidden lg:h-auto">
     <div class="flex items-center gap-[40px] flex-1 self-stretch">
         <div class="flex py-[40px] items-center gap-[8px] flex-1 self-stretch">
-            <h4 class="overflow-hidden text-[#1a1a1a] text-ellipsis font-primary text-[80px] not-italic font-bold leading-[95px] whitespace-nowrap">360 Virtual Solutions.</h4>
+            <h4 class="overflow-hidden text-[#1a1a1a] text-ellipsis font-primary text-[80px] not-italic font-bold leading-[95px] whitespace-nowrap ml-10 lg:text-[200px] lg:leading-[200px] scroll">360 Virtual Solutions.</h4>
         </div>
     </div>
 </div>
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.to(".scroll", {
+        scrollTrigger: {
+            trigger: ".scroll",
+            scrub: 1
+        },
+        x: -100,
+        duration: 1
+    })
+</script>
