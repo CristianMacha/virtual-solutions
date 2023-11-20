@@ -16,31 +16,34 @@ const { title } = Astro.props;
         <meta name="generator" content={Astro.generator} />
         <title>{title}</title>
     </head>
-    <body class="flex py-[24px] px-0 flex-col justify-center items-center bg-white relative">
+    <body
+        class="flex py-[24px] px-0 flex-col justify-center items-center bg-white relative"
+    >
         <slot />
-        <script type="module" src="https://unpkg.com/@splinetool/viewer@0.9.493/build/spline-viewer.js"></script>
+        <script
+            type="module"
+            src="https://unpkg.com/@splinetool/viewer@0.9.493/build/spline-viewer.js"
+        ></script>
     </body>
 </html>
 <style is:global>
     @font-face {
-        @font-face {
-            font-family: Aeonik;
-            src:
-                url("../assets/fonts/Aeonik-Air.otf") format("otf"),
-                url("../assets/fonts/Aeonik-AirItalic.otf") format("otf"),
-                url("../assets/fonts/Aeonik-Black.otf") format("otf"),
-                url("../assets/fonts/Aeonik-BlackItalic.otf") format("otf"),
-                url("../assets/fonts/Aeonik-Bold.otf") format("otf"),
-                url("../assets/fonts/Aeonik-BoldItalic.otf") format("otf"),
-                url("../assets/fonts/Aeonik-Light.otf") format("otf"),
-                url("../assets/fonts/Aeonik-LightItalic.otf") format("otf"),
-                url("../assets/fonts/Aeonik-Medium.otf") format("otf"),
-                url("../assets/fonts/Aeonik-MediumItalic.otf") format("otf"),
-                url("../assets/fonts/Aeonik-Regular.otf") format("otf"),
-                url("../assets/fonts/Aeonik-RegularItalic.otf") format("otf"),
-                url("../assets/fonts/Aeonik-Thin.otf") format("otf"),
-                url("../assets/fonts/Aeonik-ThinItalic.otf") format("otf"),
-        }
+        font-family: Aeonik;
+        src:
+            url("../assets/fonts/Aeonik-Air.otf") format("otf"),
+            url("../assets/fonts/Aeonik-AirItalic.otf") format("otf"),
+            url("../assets/fonts/Aeonik-Black.otf") format("otf"),
+            url("../assets/fonts/Aeonik-BlackItalic.otf") format("otf"),
+            url("../assets/fonts/Aeonik-Bold.otf") format("otf"),
+            url("../assets/fonts/Aeonik-BoldItalic.otf") format("otf"),
+            url("../assets/fonts/Aeonik-Light.otf") format("otf"),
+            url("../assets/fonts/Aeonik-LightItalic.otf") format("otf"),
+            url("../assets/fonts/Aeonik-Medium.otf") format("otf"),
+            url("../assets/fonts/Aeonik-MediumItalic.otf") format("otf"),
+            url("../assets/fonts/Aeonik-Regular.otf") format("otf"),
+            url("../assets/fonts/Aeonik-RegularItalic.otf") format("otf"),
+            url("../assets/fonts/Aeonik-Thin.otf") format("otf"),
+            url("../assets/fonts/Aeonik-ThinItalic.otf") format("otf");
     }
     /* *,
     *::after,
