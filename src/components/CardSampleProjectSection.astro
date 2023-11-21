@@ -1,0 +1,43 @@
+---
+import CardSampleProject from "./CardSampleProject.astro";
+---
+<div class="overflow-x-hidden relative hidden md:block">
+    <div class="containerScroll scrollx flex w-screen">
+        <section class="w-screen h-[390px] lg:h-[849px]">
+            <CardSampleProject />
+            <!-- <div class="h-screen bg-red-500 w-screen">sd</div> -->
+        </section>
+        <section class="w-screen h-[390px] lg:h-[849px]">
+            <CardSampleProject />
+            <!-- <div class="h-screen bg-blue-500 w-screen">sd</div> -->
+        </section>
+        <section class="w-screen h-[390px] lg:h-[849px]">
+            <CardSampleProject />
+            <!-- <div class="h-screen bg-orange-500 w-screen">sd</div> -->
+        </section>
+    </div>
+</div>
+<div class="block md:hidden">
+    <CardSampleProject />
+    <CardSampleProject />
+    <CardSampleProject />
+</div>
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    
+    gsap.registerPlugin(ScrollTrigger);
+
+    const sections = gsap.utils.toArray(".containerScroll section");
+    let scrollTween = gsap.to(sections, {
+        xPercent: -100 * (sections.length - 1),
+        ease: "none",
+        scrollTrigger: {
+            trigger: ".containerScroll",
+            pin: true,
+            scrub: 1,
+            end: "+=3000",
+            markers: false
+        }
+    })
+</script>
