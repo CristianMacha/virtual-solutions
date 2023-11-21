@@ -1,0 +1,171 @@
+<div class="header">
+    <div class="body">
+        <div class="content">
+            <img
+                src="https://firebasestorage.googleapis.com/v0/b/dev-system2023.appspot.com/o/logo-white.png?alt=media&token=bbcb5c1c-ccd7-490f-acb3-57e452843eef"
+                ,
+                alt="logo"
+                class="logo"
+            />
+            <div class="menus">
+                <div class="menu">
+                    <a href="/">ABOUT</a>
+                </div>
+                <div>-</div>
+                <div class="menu active">
+                    <a href="/">INTERACTIONS</a>
+                </div>
+                <div>-</div>
+                <div class="menu">
+                    <a href="/">LEARN</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .header {
+        position: fixed;
+        bottom: 15px;
+        z-index: 20;
+    }
+    .body {
+        display: inline-flex;
+        padding: 4px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        border-radius: 12px;
+        -webkit-backdrop-filter: hue-rotate(180deg)invert()blur(15px);
+        backdrop-filter: hue-rotate(180deg) invert() blur(15px);
+        background-color: rgba(31, 31, 31, 0.5);
+    }
+
+    .content {
+        display: flex;
+        padding: 4px 32px;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+        border-radius: 12px;
+        border: 1px solid #fff;
+    }
+
+    .logo {
+        width: 44px;
+        height: 24px;
+    }
+
+    .menus {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        color: #fff
+    }
+
+    a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .menu {
+        display: flex;
+        height: 30px;
+        padding: 6px 8px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2px;
+        border-radius: 5px;
+        color: #fff;
+        text-align: center;
+        font-family: Bebas Neue Pro;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 350;
+        line-height: normal;
+        box-sizing: border-box;
+        border: 1px solid transparent;
+        position: relative;
+        letter-spacing: 1px;
+    }
+
+    .menu:hover {
+        border-radius: 5px;
+        border: 1px solid #fff;
+        display: flex;
+        justify-content: center;
+    }
+
+    .menu.active {
+        border-radius: 5px;
+        border: 1px solid #fff;
+        display: flex;
+        justify-content: center;
+    }
+
+    .menu.active:before {
+        content: "";
+        width: 2px;
+        height: 2px;
+        border-radius: 100px;
+        background: #14ff00;
+        position: absolute;
+        bottom: 3px;
+        z-index: 20;
+    }
+
+    @media (min-width: 480px) {
+        .menus {
+        gap: 12px;
+    }
+        .menu {
+            display: flex;
+            height: 53px;
+            padding: 12px 16px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2px;
+            border-radius: 5px;
+        }
+
+        .menu:hover {
+            display: flex;
+            height: 53px;
+            padding: 12px 16px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2px;
+            border-radius: 5px;
+            border: 1px solid #fff;
+        }
+
+        .menu.active {
+            display: flex;
+            height: 53px;
+            padding: 12px 16px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2px;
+            border-radius: 5px;
+            border: 1px solid #fff;
+        }
+
+        .menu.active:before {
+            content: "";
+            width: 4px;
+            height: 4px;
+            border-radius: 100px;
+            background: #14ff00;
+            position: absolute;
+            bottom: 3px;
+            z-index: 20;
+        }
+    }
+</style>
