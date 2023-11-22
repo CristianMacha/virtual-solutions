@@ -11,6 +11,7 @@
     </div>
     <div class="w-[390px] h-[608px] shrink-0 hand-image block lg:hidden"></div>
     <div class="hidden lg:block relative mt-[6rem]">
+        <div id="hand-scene" class="container-scene"></div>
         <!-- <spline-viewer
             url="https://prod.spline.design/oEryQihXvCRojRI4/scene.splinecode"
         ></spline-viewer> -->
@@ -30,10 +31,22 @@
         bottom: 0;
         left: 0;
         right: 0;
-        background: rgb(252,249,240);
-        background: -moz-linear-gradient(180deg, rgba(252,249,240,0) 0%, rgba(0,0,0,1) 100%);
-        background: -webkit-linear-gradient(180deg, rgba(252,249,240,0) 0%, rgba(0,0,0,1) 100%);
-        background: linear-gradient(180deg, rgba(252,249,240,0) 0%, rgba(0,0,0,1) 100%);
+        background: rgb(252, 249, 240);
+        background: -moz-linear-gradient(
+            180deg,
+            rgba(252, 249, 240, 0) 0%,
+            rgba(0, 0, 0, 1) 100%
+        );
+        background: -webkit-linear-gradient(
+            180deg,
+            rgba(252, 249, 240, 0) 0%,
+            rgba(0, 0, 0, 1) 100%
+        );
+        background: linear-gradient(
+            180deg,
+            rgba(252, 249, 240, 0) 0%,
+            rgba(0, 0, 0, 1) 100%
+        );
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fcf9f0",endColorstr="#000000",GradientType=1);
     }
 
@@ -51,8 +64,75 @@
 <script>
     import { gsap } from "gsap";
     import { ScrollTrigger } from "gsap/ScrollTrigger";
+    import * as THREE from "three";
+    import { FBXLoader } from "three/examples/jsm/Addons.js";
 
     gsap.registerPlugin(ScrollTrigger);
+
+    const containerScene = document.getElementById("hand-scene");
+    const scene = new THREE.Scene();
+    scene.background = null;
+
+    const camera = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+    );
+    camera.position.z = 550;
+
+    const renderer = new THREE.WebGLRenderer({ alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    containerScene?.appendChild(renderer.domElement);
+
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight.position.set(-1, 1, 1);
+    scene.add(directionalLight);
+
+    let loadedObject: THREE.Group<THREE.Object3DEventMap>;
+    const loader = new FBXLoader();
+    loader.load(
+        "https://firebasestorage.googleapis.com/v0/b/dev-system2023.appspot.com/o/360%2Fmanito.fbx?alt=media&token=ab700e94-1d5e-42bf-aa84-371cd1ddfebf",
+        (fbx) => {
+            fbx.traverse((child) => {
+                if(child instanceof THREE.Mesh) {
+                   var basicMaterial = new THREE.TextureLoader().load("https://firebasestorage.googleapis.com/v0/b/dev-system2023.appspot.com/o/360%2Fbg.webp?alt=media&token=04065e19-33a8-4aaf-9f66-c189f13542cc");
+                   var material = new THREE.MeshBasicMaterial({map: basicMaterial});
+                   child.material = material;
+                }
+            })
+            fbx.rotation.z += 0.5;
+            fbx.position.y -= 55;
+            fbx.position.x += 20;
+            loadedObject = fbx;
+
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".container-scen",
+                    scrub: 1
+                },
+            }).to(loadedObject.rotation, {
+                z: Math.PI * 2,
+                ease: "none",
+                duration: 30,
+            });
+            scene.add(fbx);
+        }
+    );
+
+    const animate = () => {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+    };
+
+    const onWindowResize = () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    };
+
+    animate();
+    window.addEventListener("resize", onWindowResize);
 
     gsap.fromTo(
         ".hand-image",
