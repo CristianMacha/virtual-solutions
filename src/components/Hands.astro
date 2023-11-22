@@ -1,18 +1,44 @@
-<section class="h-[661px] flex justify-center self-stretch relative hand lg:h-[982px]">
+<section
+    class="h-[661px] flex justify-center self-stretch relative hand lg:h-[982px] overflow-hidden"
+>
+    <div class="wrapper z-[2]"></div>
     <div class="absolute top-[76px]">
-        <h2 class="text-white font-primary text-[72px] not-italic font-bold leading-[normal] lg:text-[260px] lg:leading-[250px]">EL MUNDO</h2>
+        <h2
+            class="text-white font-primary text-[72px] not-italic font-bold leading-[normal] lg:text-[260px] lg:leading-[250px]"
+        >
+            EL MUNDO
+        </h2>
     </div>
     <div class="w-[390px] h-[608px] shrink-0 hand-image block lg:hidden"></div>
-    <div class="hidden lg:block">
-        <spline-viewer url="https://prod.spline.design/oEryQihXvCRojRI4/scene.splinecode"></spline-viewer>
+    <div class="hidden lg:block relative mt-[6rem]">
+        <spline-viewer
+            url="https://prod.spline.design/oEryQihXvCRojRI4/scene.splinecode"
+        ></spline-viewer>
     </div>
     <div class="absolute bottom-[41px] z-[2]">
-        <div class="text-white font-primary text-[44px] not-italic font-normal leading-[normal] lg:text-[150px] lg:leading-[120px]">EN TUS MANOS</div>
+        <div
+            class="text-white font-primary text-[44px] not-italic font-normal leading-[normal] lg:text-[150px] lg:leading-[120px]"
+        >
+            EN TUS MANOS
+        </div>
     </div>
 </section>
 <style>
+    .wrapper {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgb(252,249,240);
+        background: -moz-linear-gradient(180deg, rgba(252,249,240,0) 0%, rgba(0,0,0,1) 100%);
+        background: -webkit-linear-gradient(180deg, rgba(252,249,240,0) 0%, rgba(0,0,0,1) 100%);
+        background: linear-gradient(180deg, rgba(252,249,240,0) 0%, rgba(0,0,0,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fcf9f0",endColorstr="#000000",GradientType=1);
+    }
+
     .hand {
-        background: linear-gradient(180deg, #5739FB 0%, #000 100%);
+        background: linear-gradient(180deg, #5739fb 0%, #000 100%);
     }
 
     .hand-image {
@@ -25,23 +51,27 @@
 <script>
     import { gsap } from "gsap";
     import { ScrollTrigger } from "gsap/ScrollTrigger";
-    
+
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.fromTo(".hand-image", {
-        y: 100
-    }, {
-        scrollTrigger: {
-            trigger: '.hand-image',
-            scrub: 1
+    gsap.fromTo(
+        ".hand-image",
+        {
+            y: 100,
         },
-        y: -70,
-        duration: 3,
-        ease: "power2.out"
-    })
+        {
+            scrollTrigger: {
+                trigger: ".hand-image",
+                scrub: 1,
+            },
+            y: -70,
+            duration: 3,
+            ease: "power2.out",
+        }
+    );
 
-    window.onload = function() {
-        var shadowRoot = document.querySelector('spline-viewer')!.shadowRoot;
-        shadowRoot?.querySelector('#logo')!.remove();
-    }
+    window.onload = function () {
+        var shadowRoot = document.querySelector("spline-viewer")!.shadowRoot;
+        shadowRoot?.querySelector("#logo")!.remove();
+    };
 </script>
