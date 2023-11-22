@@ -10,12 +10,14 @@
     import { ScrollTrigger } from "gsap/ScrollTrigger";
     
     gsap.registerPlugin(ScrollTrigger);
-    gsap.to(".scroll", {
+    gsap.fromTo(".scroll", {
+        x: 300,
+    }, {
         scrollTrigger: {
             trigger: ".scroll",
-            scrub: 1
+            scrub: 1,
         },
-        x: -100,
-        duration: 1
+        x: -600,
+        // duration: 3
     })
 </script>
