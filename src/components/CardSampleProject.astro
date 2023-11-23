@@ -1,34 +1,66 @@
-<div class="flex h-[390px] px-[16px] py-[40px] flex-col justify-end items-center gap-[20px] w-screen bg-fixed card lg:h-screen lg:px-[40px] lg:py-[80px]">
+---
+interface Props {
+    url: string;
+}
+
+const { url } = Astro.props;
+const bgUrl = `bg-[url('${url}')]`;
+---
+
+<div class="flex h-[390px] relative px-[16px] py-[40px] flex-col justify-end items-center card gap-[20px] w-screen lg:h-screen lg:px-[40px] lg:py-[80px]">
+    <img src={url} alt="image" class="bg-cover bg-no-repeat absolute top-o right-0 left-0 bottom-0 -z-[1] w-full h-full">
     <div class="flex justify-between items-center self-stretch">
-        <h3 class="text-white font-primary text-[28px] not-italic font-normal leading-[normal] lg:text-[32px] ">CHROMIUM</h3>
-        <div class="flex py-[8px] px-[24px] justify-center items-start gap-[8px] rounded-full border border-white">
-            <span class="text-white font-primary text-[12px] not-italic font-normal leading-[normal]">2023</span>
+        <h3
+            class="text-white font-primary text-[28px] not-italic font-normal leading-[normal] lg:text-[32px]"
+        >
+            CHROMIUM
+        </h3>
+        <div
+            class="flex py-[8px] px-[24px] justify-center items-start gap-[8px] rounded-full border border-white"
+        >
+            <span
+                class="text-white font-primary text-[12px] not-italic font-normal leading-[normal]"
+                >2023</span
+            >
         </div>
     </div>
-    <div class="hidden lg:flex justify-between items-end gap-[40px] self-stretch">
-        <div class="flex-1 text-white font-primary text-[20px] not-italic font-normal leading-[normal]">An innovative real-estate development company that focuses on constructing sustainable and cost-effective properties while minimizing environmental impacts.</div>
+    <div
+        class="hidden lg:flex justify-between items-end gap-[40px] self-stretch"
+    >
+        <div
+            class="flex-1 text-white font-primary text-[20px] not-italic font-normal leading-[normal]"
+        >
+            An innovative real-estate development company that focuses on
+            constructing sustainable and cost-effective properties while
+            minimizing environmental impacts.
+        </div>
         <div class="flex justify-center items-center gap-[8px]">
-            <div class="flex py-[8px] px-[34px] justify-end items-center gap-[8px] rounded-full border border-white">
-                <span class="text-white font-primary text-[18px] not-italic font-normal leading-[normal]">Brand identify</span>
+            <div
+                class="flex py-[8px] px-[34px] justify-end items-center gap-[8px] rounded-full border border-white"
+            >
+                <span
+                    class="text-white font-primary text-[18px] not-italic font-normal leading-[normal]"
+                    >Brand identify</span
+                >
             </div>
-            <div class="flex py-[8px] px-[34px] justify-end items-center gap-[8px] rounded-full border border-white">
-                <span class="text-white font-primary text-[18px] not-italic font-normal leading-[normal]">Brand identify</span>
+            <div
+                class="flex py-[8px] px-[34px] justify-end items-center gap-[8px] rounded-full border border-white"
+            >
+                <span
+                    class="text-white font-primary text-[18px] not-italic font-normal leading-[normal]"
+                    >Brand identify</span
+                >
             </div>
         </div>
     </div>
 </div>
 <style>
     .card {
-        background:
-            linear-gradient(
-                180deg,
-                rgba(255, 255, 255, 0) 0%,
-                rgba(0, 0, 0, 0.64) 100%
-            ),
-            url("https://firebasestorage.googleapis.com/v0/b/dev-system2023.appspot.com/o/360%2FsampleProject.jpg?alt=media&token=f7e153ff-7472-422f-b011-797b797e7e0d"),
-            lightgray 50%;
-        background-size: cover;
-        background-repeat: no-repeat;
+        background: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(0, 0, 0, 0.64) 100%
+        );
         /* background-attachment: fixed; */
     }
 </style>

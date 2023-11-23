@@ -105,11 +105,11 @@
 
             gsap.timeline({
                 scrollTrigger: {
-                    trigger: ".container-scen",
+                    trigger: ".container-scene",
                     scrub: 1
                 },
             }).to(loadedObject.rotation, {
-                z: Math.PI * 2,
+                z: Math.PI * 0.5,
                 ease: "none",
                 duration: 30,
             });
@@ -147,8 +147,8 @@
         }
     );
 
-    window.onload = function () {
-        var shadowRoot = document.querySelector("spline-viewer")!.shadowRoot;
-        shadowRoot?.querySelector("#logo")!.remove();
-    };
+    // window.onload = function () {
+    //     var shadowRoot = document.querySelector("spline-viewer")!.shadowRoot;
+    //     shadowRoot?.querySelector("#logo")!.remove();
+    // };
 </script>
