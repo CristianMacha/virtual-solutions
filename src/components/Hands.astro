@@ -78,26 +78,55 @@
     );
     camera.position.z = 550;
 
+    const light = new THREE.PointLight(0x800080); // Purple color
+    light.position.set(-600, +10, -300);
+    light.scale.x = 1;
+    light.scale.y = 1;
+    light.scale.x = 1;
+    light.intensity = 10;
+    light.decay = 0.1
+    scene.add(light);
+
+    const blueLight = new THREE.PointLight(0x234E8F);
+    blueLight.position.set(-90, 0, 1);
+    blueLight.scale.x = 1;
+    blueLight.scale.y = 1;
+    blueLight.scale.x = 1;
+    blueLight.distance = 1605
+    blueLight.intensity = 100;
+    // blueLight.intensity = 0.95;
+    blueLight.decay = 0.1
+    scene.add(blueLight);
+
+    const blueLightTop = new THREE.PointLight(0x234E8F);
+    blueLightTop.position.set(0, +200, 100);
+    blueLightTop.scale.x = 1;
+    blueLightTop.scale.y = 1;
+    blueLightTop.scale.x = 1;
+    blueLightTop.distance = 160
+    blueLightTop.intensity = 100;
+    blueLightTop.decay = 0.1
+    scene.add(blueLightTop);
+
+    const blueLightCenter = new THREE.PointLight(0x23898F);
+    blueLightCenter.position.set(0, +90, 100);
+    blueLightCenter.scale.x = 1;
+    blueLightCenter.scale.y = 1;
+    blueLightCenter.scale.x = 1;
+    blueLightCenter.distance = 160
+    blueLightCenter.intensity = 100;
+    blueLightCenter.decay = 0.1
+    scene.add(blueLightCenter);
+
     const renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     containerScene?.appendChild(renderer.domElement);
-
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLight.position.set(-1, 1, 1);
-    scene.add(directionalLight);
 
     let loadedObject: THREE.Group<THREE.Object3DEventMap>;
     const loader = new FBXLoader();
     loader.load(
         "https://firebasestorage.googleapis.com/v0/b/dev-system2023.appspot.com/o/360%2Fmanito.fbx?alt=media&token=ab700e94-1d5e-42bf-aa84-371cd1ddfebf",
         (fbx) => {
-            fbx.traverse((child) => {
-                if(child instanceof THREE.Mesh) {
-                   var basicMaterial = new THREE.TextureLoader().load("https://firebasestorage.googleapis.com/v0/b/dev-system2023.appspot.com/o/360%2Fbg.webp?alt=media&token=04065e19-33a8-4aaf-9f66-c189f13542cc");
-                   var material = new THREE.MeshBasicMaterial({map: basicMaterial});
-                   child.material = material;
-                }
-            })
             fbx.rotation.z += 0.5;
             fbx.position.y -= 55;
             fbx.position.x += 120;
@@ -106,7 +135,7 @@
             gsap.timeline({
                 scrollTrigger: {
                     trigger: ".container-scene",
-                    scrub: 1
+                    scrub: 1,
                 },
             }).to(loadedObject.rotation, {
                 z: Math.PI * 0.5,
@@ -146,9 +175,4 @@
             ease: "power2.out",
         }
     );
-
-    // window.onload = function () {
-    //     var shadowRoot = document.querySelector("spline-viewer")!.shadowRoot;
-    //     shadowRoot?.querySelector("#logo")!.remove();
-    // };
 </script>
