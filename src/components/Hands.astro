@@ -1,6 +1,4 @@
-<section
-    class="h-[661px] flex justify-center self-stretch relative hand lg:h-[982px] overflow-hidden"
->
+<section class="h-[661px] flex justify-center self-stretch relative hand lg:h-[982px] overflow-hidden">
     <div class="wrapper z-[2]"></div>
     <div class="absolute top-[76px]">
         <h2
@@ -48,7 +46,8 @@
     }
 
     .hand {
-        background: linear-gradient(180deg, #5739fb 0%, #000 100%);
+        background: rgb(87,57,251);
+        background: linear-gradient(180deg, rgba(87,57,251,1) 0%, rgba(0,0,0,1) 66%);
     }
 
     .hand-image {
@@ -63,116 +62,143 @@
     import { ScrollTrigger } from "gsap/ScrollTrigger";
     import * as THREE from "three";
     import { FBXLoader } from "three/examples/jsm/Addons.js";
+    import {getDisplay} from "../assets/js/screen";
 
     gsap.registerPlugin(ScrollTrigger);
 
-    const containerScene = document.getElementById("hand-scene");
-    const scene = new THREE.Scene();
-    scene.background = null;
+    const initialDesktop = () => {
+        const containerScene = document.getElementById("hand-scene");
+        const scene = new THREE.Scene();
+        scene.background = null;
+    
+        const camera = new THREE.PerspectiveCamera(
+            75,
+            window.innerWidth / window.innerHeight,
+            0.1,
+            1000
+        );
+        camera.position.z = 550;
+    
+        const purpleLight = new THREE.PointLight(0x800080); // Purple color
+        purpleLight.position.set(-600, +10, -300);
+        purpleLight.scale.set(1, 1, 1);
+        purpleLight.intensity = 10;
+        purpleLight.decay = 0.1;
+        scene.add(purpleLight);
+    
+        const blueLight = new THREE.PointLight(0x234e8f);
+        blueLight.position.set(-90, 0, 1);
+        blueLight.scale.set(1, 1, 1);
+        blueLight.distance = 1605;
+        blueLight.intensity = 100;
+        blueLight.decay = 0.1;
+        scene.add(blueLight);
+    
+        const blueLightTop = new THREE.PointLight(0x234e8f);
+        blueLightTop.position.set(0, +200, 100);
+        blueLightTop.scale.set(1, 1, 1);
+        blueLightTop.distance = 160;
+        blueLightTop.intensity = 100;
+        blueLightTop.decay = 0.1;
+        scene.add(blueLightTop);
+    
+        const blueLightCenter = new THREE.PointLight(0x23898f);
+        blueLightCenter.position.set(0, +90, 100);
+        blueLightCenter.scale.set(1, 1, 1);
+        blueLightCenter.distance = 160;
+        blueLightCenter.intensity = 100;
+        blueLightCenter.decay = 0.1;
+        scene.add(blueLightCenter);
+    
+        // const sphereGeometry = new THREE.SphereGeometry(120, 32, 32);
+        // const sphereMaterial = new THREE.MeshStandardMaterial({ color: 0x808080 });
+        // const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+        // sphere.position.set(-60, 260, -30);
+        // scene.add(sphere);
+    
+        const renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        containerScene?.appendChild(renderer.domElement);
+    
+        let loadedObject: THREE.Group<THREE.Object3DEventMap>;
+        const loader = new FBXLoader();
+        loader.load(
+            "https://firebasestorage.googleapis.com/v0/b/dev-system2023.appspot.com/o/360%2Fmanito.fbx?alt=media&token=ab700e94-1d5e-42bf-aa84-371cd1ddfebf",
+            (fbx) => {
+                fbx.rotation.z += 0.5;
+                fbx.position.y -= 155;
+                fbx.position.x += 120;
+                fbx.scale.set(1.2, 1.2, 1.2);
+                loadedObject = fbx;
+    
+                gsap.timeline({
+                    scrollTrigger: {
+                        trigger: ".container-scene",
+                        scrub: 1,
+                    },
+                }).to(loadedObject.rotation, {
+                    z: Math.PI * 0.5,
+                    ease: "none",
+                    duration: 3,
+                });
+                scene.add(fbx);
+            }
+        );
+    
+    
+        // gsap.timeline({
+        //     scrollTrigger: {
+        //         trigger: ".container-scene",
+        //         scrub: 1,
+        //     },
+        // }).to(sphere.position, {
+        //     y: 100,
+        //     ease: "none",
+        //     duration: 3
+        // });
+    
+        const animate = () => {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        };
+    
+        const onWindowResize = () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        };
+    
+        animate();
+        window.addEventListener("resize", onWindowResize);
 
-    const camera = new THREE.PerspectiveCamera(
-        75,
-        window.innerWidth / window.innerHeight,
-        0.1,
-        1000
-    );
-    camera.position.z = 550;
+    }
 
-    const light = new THREE.PointLight(0x800080); // Purple color
-    light.position.set(-600, +10, -300);
-    light.scale.x = 1;
-    light.scale.y = 1;
-    light.scale.x = 1;
-    light.intensity = 10;
-    light.decay = 0.1
-    scene.add(light);
-
-    const blueLight = new THREE.PointLight(0x234E8F);
-    blueLight.position.set(-90, 0, 1);
-    blueLight.scale.x = 1;
-    blueLight.scale.y = 1;
-    blueLight.scale.x = 1;
-    blueLight.distance = 1605
-    blueLight.intensity = 100;
-    // blueLight.intensity = 0.95;
-    blueLight.decay = 0.1
-    scene.add(blueLight);
-
-    const blueLightTop = new THREE.PointLight(0x234E8F);
-    blueLightTop.position.set(0, +200, 100);
-    blueLightTop.scale.x = 1;
-    blueLightTop.scale.y = 1;
-    blueLightTop.scale.x = 1;
-    blueLightTop.distance = 160
-    blueLightTop.intensity = 100;
-    blueLightTop.decay = 0.1
-    scene.add(blueLightTop);
-
-    const blueLightCenter = new THREE.PointLight(0x23898F);
-    blueLightCenter.position.set(0, +90, 100);
-    blueLightCenter.scale.x = 1;
-    blueLightCenter.scale.y = 1;
-    blueLightCenter.scale.x = 1;
-    blueLightCenter.distance = 160
-    blueLightCenter.intensity = 100;
-    blueLightCenter.decay = 0.1
-    scene.add(blueLightCenter);
-
-    const renderer = new THREE.WebGLRenderer({ alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    containerScene?.appendChild(renderer.domElement);
-
-    let loadedObject: THREE.Group<THREE.Object3DEventMap>;
-    const loader = new FBXLoader();
-    loader.load(
-        "https://firebasestorage.googleapis.com/v0/b/dev-system2023.appspot.com/o/360%2Fmanito.fbx?alt=media&token=ab700e94-1d5e-42bf-aa84-371cd1ddfebf",
-        (fbx) => {
-            fbx.rotation.z += 0.5;
-            fbx.position.y -= 55;
-            fbx.position.x += 120;
-            loadedObject = fbx;
-
-            gsap.timeline({
+    const initialTablet = () => {
+        gsap.fromTo(
+            ".hand-image",
+            {
+                y: 100,
+            },
+            {
                 scrollTrigger: {
-                    trigger: ".container-scene",
+                    trigger: ".hand-image",
                     scrub: 1,
                 },
-            }).to(loadedObject.rotation, {
-                z: Math.PI * 0.5,
-                ease: "none",
-                duration: 30,
-            });
-            scene.add(fbx);
-        }
-    );
+                y: -70,
+                duration: 3,
+                ease: "power2.out",
+            }
+        );
+    }
 
-    const animate = () => {
-        requestAnimationFrame(animate);
-        renderer.render(scene, camera);
-    };
+    const widthDisplay = window.innerWidth;
+    const display = getDisplay(widthDisplay);
 
-    const onWindowResize = () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-    };
+    if(display == "isDesktop") {
+        initialDesktop();
+    } else {
+        initialTablet();
+    }
 
-    animate();
-    window.addEventListener("resize", onWindowResize);
 
-    gsap.fromTo(
-        ".hand-image",
-        {
-            y: 100,
-        },
-        {
-            scrollTrigger: {
-                trigger: ".hand-image",
-                scrub: 1,
-            },
-            y: -70,
-            duration: 3,
-            ease: "power2.out",
-        }
-    );
 </script>
