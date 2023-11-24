@@ -4,37 +4,37 @@ import Layout from "../layouts/Layout.astro";
 import Portada from "../components/Portada.astro";
 import OurProjects from "../components/OurProjects.astro";
 import Testimonials from "../components/Testimonials.astro";
-import CardSampleProject from "../components/CardSampleProject.astro";
-import SamplesProyects from "../components/SamplesProjects.astro";
-import Banner from "../components/Banner.astro";
+import TestimonialScroll from "../components/TestimonialScroll.astro";
+import CardSampleProjectSection from "../components/CardSampleProjectSection.astro";
 import Services from "../components/Services.astro";
-import Hands from "../components/Hands.astro";
-import LetsPlay from "../components/LetsPlay.astro";
-import Galaxy from "../components/Galaxy.astro";
 import Experience from "../components/Experience.astro";
+import Banner from "../components/Banner.astro";
+import LetsPlay from "../components/LetsPlay.astro";
 import BannerScroll from "../components/BannerScroll.astro";
+import SamplesProjects from "../components/SamplesProjects.astro";
+import Galaxy from "../components/Galaxy.astro";
+import Hands from "../components/Hands.astro";
 import Footer from "../components/Footer.astro";
-import Reviews from "../components/Reviews.astro";
+import Menu from "../components/Menu.astro";
 ---
 
-<Layout title="360 Virtual Solutions">
+<Layout title="360 Virtual Solutions" description="Nos especializamos en crear experiencias innovadoras para pequeñas y grandes empresas." 
+robots="index,follow" keywords="Creación de sitios web" ogTitle="360 Virtual Solutions" ogDescription="Nos especializamos en crear experiencias innovadoras para pequeñas y grandes empresas."
+ogUrl="https://360virtualsol.com/" ogSiteName="https://360virtualsol.com/" >
 	<Portada />
 	<Hands />
 	<OurProjects />
-	<CardSampleProject />
-	<CardSampleProject />
-	<CardSampleProject />
+	<CardSampleProjectSection />
 	<Testimonials />
+	<TestimonialScroll />
 	<BannerScroll />
 	<Services />
-	<Experience />	
-	<Reviews />
-
+	<Experience />
 	<LetsPlay />
 	<Banner />
-	<SamplesProyects />
+	<SamplesProjects />
 	<Galaxy />
 	<Footer />
-
+	<Menu />
 </Layout>
 

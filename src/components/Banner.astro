@@ -1,13 +1,14 @@
-<section class=" lg:flex py-[40px] px-[16px] flex-col justify-center items-center gap-[8px] self-stretch rounded-b-[40px] bg-[#5739FB]">
-    <div class="flex flex-col justify-center items-center gap-[80px] self-stretch">
-        <div class="flex flex-col justify-center items-center gap-[32px] self-stretch">
-            <div class="flex flex-col justify-center items-center gap-[4px] self-stretch">
-                <h4 class="self-stretch text-white text-center font-primary text-[32px] not-italic font-bold leading-[normal]">Qué sucede tras bastidores?</h4>
-                <h4 class="self-stretch text-white text-center font-primary text-[32px] not-italic font-bold leading-[normal]">!Descubrelo por ti mismo!</h4>
+
+<section class="flex py-[40px] px-[16px] flex-col justify-center items-center gap-[8px] w-full bg-[#5739FB] lg:h-[985px] lg:p-[80px] banner-gsap">
+    <div class="flex flex-col justify-center items-center gap-[80px] self-stretch lg:gap-[200px]">
+        <div class="flex flex-col justify-center items-center gap-[32px] self-stretch lg:gap-[64px]">
+            <div class="flex flex-col justify-center items-center gap-[4px] self-stretch lg:self-auto">
+                <p class="self-stretch text-white text-center font-primary text-[32px] not-italic font-bold leading-[normal] lg:self-auto lg:text-[100px]">Qué sucede tras bastidores?</p>
+                <p class="self-stretch text-white text-center font-primary text-[32px] not-italic font-bold leading-[normal] lg:self-auto lg:text-[100px]">!Descubrelo por ti mismo!</p>
             </div>
             <div class="flex flex-col items-center gap-[12px] self-stretch">
-                <h5 class="self-stretch text-white text-center font-primary text-[16px] not-italic font-bold leading-[normal]">Esto es un tablero. Puedes hacer click en nuestros comentarios y leerlos, si, eso es todo.</h5>
-                <h5 class="text-white text-center font-primary text-[16px] not-italic font-bold leading-[normal]">... o explora mas a fondo</h5>
+                <p class="self-stretch text-white text-center font-primary text-[16px] not-italic font-bold leading-[normal] lg:self-auto lg:text-[40px]">Esto es un tablero. Puedes hacer click en nuestros comentarios y leerlos, si, eso es todo.</h5>
+                <p class="text-white text-center font-primary text-[16px] not-italic font-bold leading-[normal] lg:self-auto lg:text-[40px]">... o explora mas a fondo</p>
             </div>
         </div>
         <div class="flex p-[4px] items-start gap-[8px] rounded-full border border-white bg-transparent">
@@ -22,3 +23,19 @@
         </div>
     </div>
 </section>
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.to(".banner-gsap", {
+        scrollTrigger: {
+            trigger: ".banner-gsap",
+            start: "center",
+            end: "+=300",
+            scrub: 1,
+        },
+        width: "calc(100% - 20px)",
+        borderRadius: "40px"
+    })
+</script>
