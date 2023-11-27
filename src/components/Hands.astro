@@ -66,6 +66,16 @@
 
     gsap.registerPlugin(ScrollTrigger);
 
+    const widthDisplay = window.innerWidth;
+    const display = getDisplay(widthDisplay);
+    const initialDisplay = () => {
+        if(display == "Large") {
+            initialDesktop();
+        } else {
+            initialTablet();
+        }
+    }
+
     const initialDesktop = () => {
         const containerScene = document.getElementById("hand-scene");
         const scene = new THREE.Scene();
@@ -191,14 +201,6 @@
         );
     }
 
-    const widthDisplay = window.innerWidth;
-    const display = getDisplay(widthDisplay);
-
-    if(display == "isDesktop") {
-        initialDesktop();
-    } else {
-        initialTablet();
-    }
-
+    initialDisplay();
 
 </script>

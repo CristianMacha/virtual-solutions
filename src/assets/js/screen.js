@@ -1,9 +1,9 @@
 export const getDisplay = (widthScreen) => {
     if (widthScreen < 640) {
-        return "isMobile";
+        return "Small";
     } else if (widthScreen < 1024) {
-        return "isTablet";
+        return "Medium";
     } else {
-        return "isDesktop";
+        return "Large";
     }
 };
