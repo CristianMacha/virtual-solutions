@@ -21,14 +21,28 @@ const { page } = Astro.props;
             <div class="hidden lg:flex items-start gap-[44px]">
                 <a
                     href="/portfolio"
-                    class=`font-primary text-[18px] not-italic font-medium leading-[normal] ${page == 'portfolio' ? 'text-blue-500 underline decoration-2' : ''}`
+                    class=`font-primary text-[18px] not-italic font-medium leading-[normal] ${page == 'portfolio' ? 'text-blue-500 font-bold' : ''}`
                     >Portafolio</a
                 >
-                <a
-                    href="/"
-                    class="font-primary text-[18px] not-italic font-medium leading-[normal]"
-                    >Servicios</a
+                <div
+                    class=`font-primary text-[18px] not-italic font-medium leading-[normal] cursor-pointer dropdown ${(page == 'designWeb' || page == 'socialMedia') ? 'text-blue-500 font-bold' : ''}`
                 >
+                    Servicios
+                    <div class="dropdown-content p-[16px] rounded-lg">
+                        <div class="flex flex-col gap-[10px]">
+                            <a
+                                href="/design-web"
+                                class=`font-primary text-[18px] text-black not-italic font-medium leading-[normal] ${page == 'designWeb' ? 'text-blue-500 font-bold' : ''}`
+                                >Diseño web</a
+                            >
+                            <a
+                                href="/social-media"
+                                class=`font-primary text-[18px] text-black not-italic font-medium leading-[normal] ${page == 'socialMedia' ? 'text-blue-500 font-bold' : ''}`
+                                >Social media</a
+                            >
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="flex justify-center items-center">
@@ -53,7 +67,7 @@ const { page } = Astro.props;
     </div>
 </header>
 <div
-    class="bg-white active_header_mobile fixed top-0 bottom-0 right-0 left-0 z-50 flex flex-col justify-between items-center px-[16px] pb-[16px]"
+    class="active_header_mobile fixed top-0 bottom-0 right-0 left-0 z-50 flex flex-col justify-between items-center px-[16px] pb-[16px] bg-white"
     id="header-mobile"
 >
     <header class="flex h-[86px] items-center justify-center w-full bg-white">
@@ -84,24 +98,76 @@ const { page } = Astro.props;
     </header>
     <div class="flex flex-col items-start gap-[16px]">
         <a
-            href="/"
-            class="font-primary text-[18px] not-italic font-medium leading-[normal]"
+            href="/portfolio"
+            class=`font-primary text-[32px] not-italic font-medium leading-[normal] ${page == 'portfolio' ? 'text-blue-500 font-bold text-[40px]' : ''}`
             >Portafolio</a
         >
-        <a
-            href="/"
-            class="font-primary text-[18px] not-italic font-medium leading-[normal]"
-            >Servicios</a
-        >
+        <div class="dropdown" id="dropdown_mobile">
+            <span
+                id="btn_services"
+                class=`font-primary text-[32px] not-italic font-medium leading-[normal] cursor-pointer dropdown ${(page == 'designWeb' || page == 'socialMedia') ? 'text-blue-500 font-bold text-[40px]' : ''}`
+                >Servicios</span
+            >
+            <div class="dropdown_mobile">
+                <div class="flex flex-col gap-[10px] my-[8px]">
+                    <a
+                        href="/design-web"
+                        class=`pl-[10px] font-primary text-[28px] text-black not-italic font-medium leading-[normal] ${page == 'designWeb' ? 'text-blue-500 font-bold text-[30px]' : ''}`
+                        >Diseño web</a
+                    >
+                    <a
+                        href="/social-media"
+                        class=`pl-[10px] font-primary text-[28px] text-black not-italic font-medium leading-[normal] ${page == 'socialMedia' ? 'text-blue-500 font-bold text-[30px]' : ''}`
+                        >Social media</a
+                    >
+                    <a
+                        href="/branding"
+                        class=`pl-[10px] font-primary text-[28px] text-black not-italic font-medium leading-[normal] ${page == 'branding' ? 'text-blue-500 font-bold text-[30px]' : ''}`
+                        >Branding</a
+                    >
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="w-full">
+    <div class="w-full flex justify-center">
         <button
-            class="px-[16px] py-[8px] bg-black text-white rounded-full w-full"
+            class="px-[16px] py-[8px] bg-black text-white rounded-full effect_expand_x"
             >CONTACTO</button
         >
     </div>
 </div>
 <style>
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown_mobile {
+        transition: all 0.3s ease-in-out;
+        height: 0;
+        overflow: hidden;
+    }
+
+    .dropdown.active .dropdown_mobile {
+        transition: all 0.3s ease-in-out;
+        height: 155px;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 10%);
+        z-index: 1;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
     .active_header_mobile {
         display: none;
     }
@@ -111,11 +177,42 @@ const { page } = Astro.props;
     import { ScrollTrigger } from "gsap/ScrollTrigger";
 
     gsap.registerPlugin(ScrollTrigger);
+
+    const effectOpenHeaderMobile = () => {
+        gsap.fromTo(
+            ".active_header_mobile",
+            {
+                top: "0px",
+            },
+            {
+                left: "0px",
+                right: "0px",
+                bottom: "0px",
+                duration: 0.5,
+            }
+        );
+    };
+
+    const effectExpandX = () => {
+        gsap.fromTo(
+            ".effect_expand_x",
+            {
+                overflow: "hidden",
+                width: "0px",
+            },
+            {
+                width: "100%",
+                duration: 0.5,
+            }
+        );
+    };
+
     const showAnim = gsap
         .from(".header__animate", {
             yPercent: -100,
             paused: true,
             duration: 0.2,
+            borderBottom: "1px solid #E5E5E5",
         })
         .progress(1);
 
@@ -144,5 +241,12 @@ const { page } = Astro.props;
     const showHeaderMobile = () => {
         const headerMobile = document.getElementById("header-mobile");
         headerMobile?.classList.toggle("active_header_mobile");
+        effectExpandX();
     };
+
+    const btnServices = document.getElementById("btn_services");
+    btnServices?.addEventListener("click", () => {
+        const dropdown = document.getElementById("dropdown_mobile");
+        dropdown?.classList.toggle("active");
+    });
 </script>

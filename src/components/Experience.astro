@@ -171,24 +171,10 @@
     };
 
     const smallDisplay = () => {
-        gsap.fromTo(
+        gsap.to(
             ".experience-mobile",
             {
-                width: "60px",
-                height: "60px",
-                color: "#5739FB",
-            },
-            {
-                scrollTrigger: {
-                    trigger: ".experience-card",
-                    start: "top center",
-                },
-                width: "auto",
-                height: "590px",
-                duration: 1.5,
-                onComplete: () => {
-                    gsap.to(".text", { color: "white" });
-                },
+                color: "#fff",
             }
         );
     };
